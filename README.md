@@ -65,3 +65,15 @@ _Si van a crear mas endpoints como el login o registrarse recuerden actualizar p
 - [ ] Probar todos los flujos con Postman/Insomnia/Bruno.
 - [ ] Mostrar que los roles se comportan correctamente.
 - [ ] Incluir usuarios de prueba (`user`, `tech`) y contraseñas.
+
+## Cómo levantar el proyecto
+
+1. Construye y ejecuta los contenedores:
+
+```bash
+docker compose up --build
+```
+
+2. La API estará disponible en `http://localhost:8080` y la base de datos en el contenedor `db`.
+3. Utiliza la colección de Postman/Bruno en `src/main/resources` para probar los endpoints.
+4. Puedes encontrar ejemplos de peticiones en `docs/REQUESTS_EXAMPLES.http`.
