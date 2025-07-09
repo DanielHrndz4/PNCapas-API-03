@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class JwtService {
                 .claim("role", userDetails.getAuthorities().stream().findFirst().orElseThrow().getAuthority())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 86400000))
-                .signWith(getSignKey())
+                .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -37,11 +38,11 @@ public class JwtService {
     }
 
     private Claims getAllClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(getSignKey())
+        return Jwts.parser()
+                .verifyWith(getSignKey())
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
