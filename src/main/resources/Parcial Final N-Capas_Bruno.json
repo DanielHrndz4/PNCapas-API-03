@@ -22,7 +22,12 @@
           "request": {
             "url": "{{baseUrl}}/api/tickets/1",
             "method": "DELETE",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
             "params": [],
             "body": {
               "mode": "none",
@@ -53,6 +58,10 @@
                 "name": "Country",
                 "value": "{{country}}",
                 "enabled": false
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "params": [],
@@ -89,6 +98,10 @@
                 "name": "Country",
                 "value": "{{country}}",
                 "enabled": false
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "params": [
@@ -129,6 +142,10 @@
                 "name": "Country",
                 "value": "{{country}}",
                 "enabled": true
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "params": [],
@@ -161,7 +178,12 @@
           "request": {
             "url": "{{baseUrl}}/api/tickets",
             "method": "PUT",
-            "headers": [],
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
             "params": [
               {
                 "name": "id",
@@ -214,6 +236,10 @@
                 "name": "Country",
                 "value": "{{country}}",
                 "enabled": true
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "params": [],
@@ -247,6 +273,10 @@
                 "name": "Country",
                 "value": "{{country}}",
                 "enabled": false
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "params": [],
@@ -279,6 +309,10 @@
                 "name": "Country",
                 "value": "{{country}}",
                 "enabled": false
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "params": [],
@@ -312,6 +346,10 @@
                 "name": "Country",
                 "value": "{{country}}",
                 "enabled": true
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "params": [],
@@ -345,6 +383,10 @@
                 "name": "Country",
                 "value": "{{country}}",
                 "enabled": false
+              },
+              {
+                "name": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "params": [],
@@ -363,6 +405,40 @@
             "auth": {
               "mode": "none"
             }
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Auth",
+      "filename": "Auth",
+      "seq": 99,
+      "root": {
+        "meta": {
+          "name": "Auth",
+          "seq": 99
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Login",
+          "filename": "Login.bru",
+          "seq": 1,
+          "request": {
+            "url": "{{baseUrl}}/auth/login",
+            "method": "POST",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "params": [],
+            "body": "{\n  \"correo\": \"user@example.com\",\n  \"password\": \"password\"\n}",
+            "auth": {},
+            "tests": []
           }
         }
       ]
@@ -401,5 +477,4 @@
       "node_modules",
       ".git"
     ]
-  }
-}
+  }}
