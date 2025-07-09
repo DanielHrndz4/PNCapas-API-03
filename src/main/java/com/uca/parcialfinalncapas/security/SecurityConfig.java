@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(new AntPathRequestMatcher("/auth/login"),
+                                new AntPathRequestMatcher("/auth/register"),
                                 new AntPathRequestMatcher("/v3/api-docs/**"),
                                 new AntPathRequestMatcher("/swagger-ui/**"),
                                 new AntPathRequestMatcher("/swagger-ui.html"))

@@ -76,3 +76,4 @@ docker compose up --build
 
 2. La API estará disponible en `http://localhost:8080` y la base de datos en el contenedor `db`.
 3. Utiliza la colección de Postman/Bruno en `src/main/resources` para probar los endpoints.
+
