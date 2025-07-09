@@ -1,0 +1,42 @@
+### Login como tech
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "correo": "carlos.ramirez@example.com",
+  "password": "hash_password_1"
+}
+
+### Login como user
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "correo": "ana.lopez@example.com",
+  "password": "hash_password_3"
+}
+
+### Registro de usuario
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "nombre": "Nuevo Usuario",
+  "correo": "nuevo@example.com",
+  "password": "password",
+  "nombreRol": "user"
+}
+
+### Obtener todos los tickets (requiere token de tech)
+GET http://localhost:8080/api/tickets
+Authorization: Bearer <token>
+
+### Crear un ticket (requiere token de user)
+POST http://localhost:8080/api/tickets
+Authorization: Bearer <token>
+Content-Type: application/json
+
+{
+  "titulo": "Problema con impresora",
+  "descripcion": "No imprime correctamente"
+}

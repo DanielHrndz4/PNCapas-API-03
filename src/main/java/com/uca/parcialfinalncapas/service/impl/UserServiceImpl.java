@@ -3,12 +3,12 @@ package com.uca.parcialfinalncapas.service.impl;
 import com.uca.parcialfinalncapas.dto.request.UserCreateRequest;
 import com.uca.parcialfinalncapas.dto.request.UserUpdateRequest;
 import com.uca.parcialfinalncapas.dto.response.UserResponse;
-import com.uca.parcialfinalncapas.entities.User;
 import com.uca.parcialfinalncapas.exceptions.UserNotFoundException;
 import com.uca.parcialfinalncapas.repository.UserRepository;
 import com.uca.parcialfinalncapas.service.UserService;
 import com.uca.parcialfinalncapas.utils.mappers.UserMapper;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserResponse findByCorreo(String correo) {
@@ -31,7 +32,9 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundException("Ya existe un usuario con el correo: " + user.getCorreo());
         }
 
-        return UserMapper.toDTO(userRepository.save(UserMapper.toEntityCreate(user)));
+        var entity = UserMapper.toEntityCreate(user);
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        return UserMapper.toDTO(userRepository.save(entity));
     }
 
     @Override
@@ -40,7 +43,9 @@ public class UserServiceImpl implements UserService {
             throw new UserNotFoundException("No se encontró un usuario con el ID: " + user.getId());
         }
 
-        return UserMapper.toDTO(userRepository.save(UserMapper.toEntityUpdate(user)));
+        var entity = UserMapper.toEntityUpdate(user);
+        entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+        return UserMapper.toDTO(userRepository.save(entity));
     }
 
     @Override
