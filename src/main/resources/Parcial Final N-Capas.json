@@ -13,7 +13,12 @@
           "event": [],
           "request": {
             "method": "DELETE",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
             "auth": {
               "type": "noauth"
             },
@@ -45,6 +50,10 @@
                 "value": "{{country}}",
                 "disabled": true,
                 "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "auth": {
@@ -91,6 +100,10 @@
                 "value": "{{country}}",
                 "disabled": true,
                 "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "auth": {
@@ -137,6 +150,10 @@
                 "value": "{{country}}",
                 "disabled": false,
                 "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "auth": {
@@ -185,7 +202,12 @@
           "event": [],
           "request": {
             "method": "PUT",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
             "auth": {
               "type": "noauth"
             },
@@ -235,6 +257,10 @@
                 "value": "{{country}}",
                 "disabled": false,
                 "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "auth": {
@@ -277,6 +303,10 @@
                 "value": "{{country}}",
                 "disabled": true,
                 "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "auth": {
@@ -310,6 +340,10 @@
                 "value": "{{country}}",
                 "disabled": true,
                 "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "auth": {
@@ -351,6 +385,10 @@
                 "value": "{{country}}",
                 "disabled": false,
                 "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "auth": {
@@ -393,6 +431,10 @@
                 "value": "{{country}}",
                 "disabled": true,
                 "type": "default"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
               }
             ],
             "auth": {
@@ -424,6 +466,38 @@
           }
         }
       ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"correo\": \"user@example.com\",\n  \"password\": \"password\"\n}"
+            }
+          },
+          "event": []
+        }
+      ]
     }
   ],
   "variable": [
@@ -437,5 +511,4 @@
       "value": "",
       "type": "default"
     }
-  ]
-}
+  ]}
